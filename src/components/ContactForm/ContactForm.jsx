@@ -1,4 +1,5 @@
 import { useId } from "react";
+import { nanoid } from "@reduxjs/toolkit";
 import { useDispatch } from "react-redux";
 import { Field, Formik, Form, ErrorMessage } from "formik";
 import * as Yup from "yup";
@@ -28,7 +29,7 @@ const ContactForm = () => {
       alert("Please enter both name and number before adding a contact.");
       return;
     }
-    dispatch(addContacts(newContact));
+    dispatch(addContacts({ ...newContact, id: nanoid() }));
     resetForm();
   };
 
